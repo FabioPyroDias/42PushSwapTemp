@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fda-cruz <fda-cruz@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 15:53:01 by fda-cruz          #+#    #+#             */
-/*   Updated: 2025/12/15 17:12:23 by fda-cruz         ###   ########.fr       */
+/*   Updated: 2025/12/15 21:06:23 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,39 @@ long	ft_atol(char *str)
 	return (result * sign);
 }
 
-int	is_valid_input(int argc, char *argv[])
+int	check_valid_numbers(int argc, char *argv[])
 {
 	int	index;
+	int	index_c;
 
+	index = 1;
+	while (argv[index])
+	{
+		index_c = 0;
+		while (argv[index][index_c])
+		{
+			if (!((argv[index][index_c] >= '0' && argv[index][index_c] <= '9') ||
+				argv[index][index_c] == '+' || argv[index][index_c] == '-' ||
+				(argv[index][index_c] >= 9 && argv[index][index_c] <= 13) ||
+				argv[index][index_c] == ' '))
+					return (0);
+			index_c++;
+		}
+		index++;
+	}
+	return (1);
+}
+
+int	is_valid_input(int argc, char *argv[])
+{
 	if (argc < 2)
 	{
 		write(2, "Error: Empty Stack\n", 19);
 		return (0);
 	}
-	index = 1;
-	while (argv[index])
+	if (!check_valid_numbers)
 	{
-		
+		write(2, "Error: Invalid Input\n", 21);
+		return (0);
 	}
 }
