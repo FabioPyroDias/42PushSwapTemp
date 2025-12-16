@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fda-cruz <fda-cruz@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 15:53:01 by fda-cruz          #+#    #+#             */
-/*   Updated: 2025/12/16 15:44:26 by fda-cruz         ###   ########.fr       */
+/*   Updated: 2025/12/16 21:44:57 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,19 @@ int	ft_strlen(char *str)
 
 int	validate_input(char *str, int start, int length)
 {
-	int	index;
+	int	i;
 
-	index = 0;
-	while (start < length)
+	i = 0;
+	if (length == 1 && !(str[0] >= '0' && str[0] <= '9'))
+		return (0);
+	while (i < length)
 	{
-		if (index == 0 && (str[index] == '+' || str[index] == '-'))
+		if (i == 0 && !((str[start + i] == '+' || str[start + i] == '-')
+		|| (str[start + i] >= '0' && str[start + i] <= '9')))
 			return (0);
+		if (i != 0 && !(str[start + i] >= '0' && str[start + i] <= '9'))
+			return (0);
+		i++;
 	}
 	return (1);
 }
@@ -44,13 +50,14 @@ int	count_numbers(char *str)
 
 	index = 0;
 	count = 0;
+	
 	while (str[index])
 	{
 		while (str[index] && str[index] == ' ')
 			index++;
 		start = index;
 		length = 0;
-		while (str[index] || str[index] != ' ')
+		while (str[index] && str[index] != ' ')
 		{
 			index++;
 			length++;
@@ -165,11 +172,19 @@ int	is_valid_input(int argc, char *argv[])
 		return (0);
 	}
 	index = 1;
-	while (argv[index])
+	while (index < argc)
 	{
 		if (ft_strlen(argv[index]) == 0)
+		{
+			write(2, "Error: Invalid Input\n", 21);
 			return (0);
+		}
 		if (!count_numbers(argv[index]))
+		{
+			write(2, "Error: Invalid Input\n", 21);
 			return (0);
+		}
+		index++;
 	}
+	return (1);
 }
