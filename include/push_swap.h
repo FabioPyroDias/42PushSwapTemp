@@ -6,7 +6,7 @@
 /*   By: fda-cruz <fda-cruz@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 13:08:27 by fda-cruz          #+#    #+#             */
-/*   Updated: 2025/12/15 17:05:28 by fda-cruz         ###   ########.fr       */
+/*   Updated: 2025/12/16 11:42:58 by fda-cruz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define PUSH_SWAP_H
 
 #include <unistd.h>
+#include <stdlib.h>
+#include <limits.h>
 
 typedef struct stack
 {
@@ -33,5 +35,11 @@ void	rr(t_stack *a, t_stack *b);
 void	rra(t_stack *a);
 void	rrb(t_stack *b);
 void	rrr(t_stack *a, t_stack *b);
+
+int	is_valid_input(int argc, char *argv[]);
+int	check_valid_numbers(char *argv[]);
+long	ft_atol(char *str);
+int	are_arguments_valid(int	argc, char *argv[], long **array);
+int	are_arguments_repeated(int argc, long **array);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: fda-cruz <fda-cruz@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/15 13:40:48 by fda-cruz          #+#    #+#              #
-#    Updated: 2025/12/15 15:49:32 by fda-cruz         ###   ########.fr        #
+#    Updated: 2025/12/16 11:41:18 by fda-cruz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,9 @@ INCLUDE = -Iinclude
 
 SRC_DIR = src
 FILES = push_swap.c push_swap_op_swap.c push_swap_op_push.c \
-		push_swap_op_rotate.c push_swap_op_reverse_rotate.c
+		push_swap_op_rotate.c push_swap_op_reverse_rotate.c \
+		push_swap_utils.c
+
 SRC = $(addprefix $(SRC_DIR)/, $(FILES))
 
 OBJ_DIR = obj

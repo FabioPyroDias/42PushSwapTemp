@@ -6,11 +6,11 @@
 /*   By: fda-cruz <fda-cruz@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 13:10:46 by fda-cruz          #+#    #+#             */
-/*   Updated: 2025/12/15 17:10:07 by fda-cruz         ###   ########.fr       */
+/*   Updated: 2025/12/16 11:58:26 by fda-cruz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 int	main(int argc, char *argv[])
 {
