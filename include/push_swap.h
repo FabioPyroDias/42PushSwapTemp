@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fda-cruz <fda-cruz@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 13:08:27 by fda-cruz          #+#    #+#             */
-/*   Updated: 2025/12/17 13:44:21 by fda-cruz         ###   ########.fr       */
+/*   Updated: 2025/12/17 22:59:00 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,15 @@ void	rr(t_stack *a, t_stack *b);
 void	rra(t_stack *a);
 void	rrb(t_stack *b);
 void	rrr(t_stack *a, t_stack *b);
-int		ft_strlen(char *str);
-int		validate_input(char *str, int start, int length);
-int		are_valid_numbers(char *str);
-long	ft_atol(char *str);
-int		is_valid_input(int argc, char *argv[]);
-int		count_words(char *str);
-long	get_number_in_str(char *str, int start, int length);
-int		are_nbrs_in_range(long **array, int size, char *nbrs[]);
-int		are_nbrs_dup(long **array, int size, char *nbrs[]);
-int		are_valid_nbrs(int size, char *nbrs[]);
+
+int		is_valid_number(char *str, int *index);
+int		is_valid_argument(char *str);
+int		count_numbers(int argc, char *argv[]);
+int		*parse_input(int argc, char *argv[]);
+void	skip_spaces(char *str, int *index);
+long	ft_atol(char *str, int *index);
+int		is_number_in_integer_range(char *str, int *array, int *i_array);
+int		are_numbers_in_integer_range(int *array, int argc, char *argv[]);
+int		are_numbers_repeated(int *array, int length);
 
 #endif

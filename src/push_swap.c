@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fda-cruz <fda-cruz@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 13:10:46 by fda-cruz          #+#    #+#             */
-/*   Updated: 2025/12/17 12:05:23 by fda-cruz         ###   ########.fr       */
+/*   Updated: 2025/12/17 21:49:54 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 int	main(int argc, char *argv[])
 {
-	if (!is_valid_input(argc, argv))
-		return (0);
-	if (!are_valid_nbrs(argc - 1, argv))
+	int	*array;
+
+	array = parse_input(argc, argv);
+	if (!array)
 		return (0);
 	//Falta criar long array, passar todos os números para long,
 	//1. Verificar se cabem em INT

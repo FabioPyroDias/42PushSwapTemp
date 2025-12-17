@@ -1,102 +1,85 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   push_swap_utils2.c                                 :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: fda-cruz <fda-cruz@student.42lisboa.com    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/17 10:19:25 by fda-cruz          #+#    #+#             */
-/*   Updated: 2025/12/17 14:56:50 by fda-cruz         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../include/push_swap.h"
 
-char	*ft_strdup(char *str, int start, int length)
+void	skip_spaces(char *str, int *index)
 {
-	char	*dup;
-	int		index;
-
-	dup = malloc(sizeof(char) * (length + 1));
-	if (!dup)
-		return (NULL);
-	index = 0;
-	while (index < length)
-	{
-		dup[index] = str[start + index];
-		index++;
-	}
-	dup[index] = '\0';
-	return (dup);
+	while (str[*index] && ((str[*index] >= 9 && str[*index] <= 13)
+			|| str[*index] == ' '))
+				(*index)++;
 }
 
-int	count_words(char *str)
+long	ft_atol(char *str, int *index)
 {
-	int	index;
-	int	found_nbr;
-	int	count;
+	long	result;
+	int		sign;
+
+	result = 0;
+	sign = 1;
+	if (str[*index] == '+' || str[*index] == '-')
+	{
+		if (str[*index] == '-')
+			sign = -1;
+		(*index)++;
+	}
+	while (str[*index] >= '0' && str[*index] <= '9')
+	{
+		result = result * 10 + (str[*index] - '0');
+		(*index)++;
+	}
+	return (result * sign);
+}
+
+int	is_number_in_integer_range(char *str, int *array, int *i_array)
+{
+	int		index;
+	long	temp;
 
 	index = 0;
-	found_nbr = 0;
-	count = 0;
 	while (str[index])
 	{
-		if (str[index] >= '0' && str[index] <= '9')
-			found_nbr = 1;
-		else
+		skip_spaces(str, &index);
+		if (str[index] == '\0')
+			break;
+		temp = ft_atol(str, &index);
+		if (temp < INT_MIN || temp > INT_MAX)
+			return (0);
+		array[*i_array] = (int) temp;
+		(*i_array)++;
+	}
+	return (1);
+}
+
+int	are_numbers_in_integer_range(int *array, int argc, char *argv[])
+{
+	int		i_array;
+	int		i_arg;
+
+	i_array = 0;
+	i_arg = 1;
+	while (i_arg < argc)
+	{
+		if (!is_number_in_integer_range(argv[i_arg], array, &i_array))
+			return (free(array), 0);
+		i_arg++;
+	}
+	return (1);
+}
+
+int	are_numbers_repeated(int *array, int length)
+{
+	int	i;
+	int	i_c;
+
+	i = 0;
+	while (i < length - 1)
+	{
+		i_c = i + 1;
+		while (i_c < length)
 		{
-			if (found_nbr)
-				count++;
-			found_nbr = 0;
+			if (array[i] == array[i_c])
+				return (free(array), 0);
+			i_c++;
 		}
-		index++;
+		i++;
 	}
-	if (found_nbr)
-		count++;
-	return (count);
-}
-
-int	are_nbrs_in_range(long **array, int	size, char *nbrs[])
-{
-	int	index;
-
-	index = 1;
-	while (index < size)
-	{
-		
-	}
-}
-
-int	are_nbrs_dup(long *array, int size, char *nbrs[])
-{
-	
-}
-
-int	are_valid_nbrs(int size, char *nbrs[])
-{
-	long	*arr;
-	int		index;
-	int		length;
-
-	index = 1;
-	length = 0;
-	while (index < size)
-	{
-		length += count_words(nbrs[index]);
-		index++;
-	}
-	printf("Length: %d\n", length);
-	arr = malloc(sizeof(int) * length);
-	if (!arr)
-	{
-		write(2, "Error: Failed to Allocate Memory\n", 33);
-		return (0);
-	}
-	if (!are_nbrs_in_range(&arr, size, nbrs, length) || !are_nbrs_dup(arr, size, nbrs))
-	{
-		free(arr);
-		return (0);
-	}
-	free(arr);
 	return (1);
 }

@@ -1,121 +1,83 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   push_swap_utils2.c                                 :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: fda-cruz <fda-cruz@student.42lisboa.com    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/15 15:53:01 by fda-cruz          #+#    #+#             */
-/*   Updated: 2025/12/17 10:19:05 by fda-cruz         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../include/push_swap.h"
 
-int	ft_strlen(char *str)
+int	is_valid_number(char *str, int *index)
 {
-	int	length;
+	int	found_nbr;
 
-	length = 0;
-	while (str[length])
-		length++;
-	return (length);
+	found_nbr = 0;
+	while (str[*index] && !(str[*index] >= 9 && str[*index] <= 13) 
+		&& str[*index] != ' ')
+	{
+		if ((str[*index] == '+' || str[*index] == '-'))
+		{
+			if (found_nbr)
+				return (0);
+			found_nbr = 1;
+		}
+		else if (str[*index] >= '0' && str[*index] <= '9')
+			found_nbr = 1;
+		else
+			return (0);
+		(*index)++;
+	}
+	return (found_nbr);
 }
 
-int	validate_input(char *str, int start, int length)
+int	is_valid_argument(char *str)
 {
+	int	count;
 	int	i;
 
-	i = 0;
-	if (length == 1 && !(str[0] >= '0' && str[0] <= '9'))
-		return (0);
-	while (i < length)
-	{
-		if (i == 0 && !((str[start + i] == '+' || str[start + i] == '-')
-				|| (str[start + i] >= '0' && str[start + i] <= '9')))
-			return (0);
-		if (i != 0 && !(str[start + i] >= '0' && str[start + i] <= '9'))
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-int	are_valid_numbers(char *str)
-{
-	int	index;
-	int	start;
-	int	length;
-	int	count;
-
-	index = 0;
 	count = 0;
-	while (str[index])
+	i = 0;
+	while (str[i])
 	{
-		while (str[index] && str[index] == ' ')
-			index++;
-		start = index;
-		length = 0;
-		while (str[index] && str[index] != ' ')
-		{
-			index++;
-			length++;
-		}
-		if (!validate_input(str, start, length))
+		while (str[i] && (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13)))
+			i++;
+		if (str[i] == '\0')
+			break ;
+		if (!is_valid_number(str, &i))
 			return (0);
 		count++;
 	}
 	return (count);
 }
 
-long	ft_atol(char *str)
+int	count_numbers(int argc, char *argv[])
 {
-	int		index;
-	long	result;
-	int		sign;
-
-	index = 0;
-	result = 0;
-	sign = 1;
-	while ((str[index] >= 9 && str[index] <= 13) || str[index] == ' ')
-		index++;
-	if (str[index] == '+' || str[index] == '-')
+	int	count;
+	int	current_count;
+	int	i_arg;
+	
+	count = 0;
+	i_arg = 1;
+	while (i_arg < argc)
 	{
-		if (str[index] == '-')
-			sign = -1;
-		index++;
+		current_count = is_valid_argument(argv[i_arg]);
+		if (current_count == 0)
+			return (0);
+		count += current_count;
+		i_arg++;
 	}
-	while (str[index] >= '0' && str[index] <= '9')
-	{
-		result = result * 10 + (str[index] + '0');
-		index++;
-	}
-	return (result * sign);
+	return (count);
 }
 
-int	is_valid_input(int argc, char *argv[])
+int	*parse_input(int argc, char *argv[])
 {
-	int	index;
+	int	length;
+	int	*array;
 
 	if (argc < 2)
-	{
-		write(2, "Error: Empty Stack\n", 19);
-		return (0);
-	}
-	index = 1;
-	while (index < argc)
-	{
-		if (ft_strlen(argv[index]) == 0)
-		{
-			write(2, "Error: Invalid Input\n", 21);
-			return (0);
-		}
-		if (!are_valid_numbers(argv[index]))
-		{
-			write(2, "Error: Invalid Input\n", 21);
-			return (0);
-		}
-		index++;
-	}
-	return (1);
+		return (write(2, "Error: Stack Empty\n", 19), NULL);
+	length = count_numbers(argc, argv);
+	if (length == 0)
+		return (write(2, "Error: Invalid Input\n", 21), NULL);
+	array = malloc(sizeof(int) * length);
+	if (!array)
+		return (write(2, "Error: Failed to Allocate Memory.\n", 34), NULL);
+	if (!are_numbers_in_integer_range(array, argc, argv))
+		return (write(2, "Error: Number not within Integer range\n", 39), NULL);
+	if (!are_numbers_repeated(array, length))
+		return (write(2, "Error: Duplicated Numbers\n", 26), NULL);
+	return (array);
 }
