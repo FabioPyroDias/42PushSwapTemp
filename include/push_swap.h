@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: fda-cruz <fda-cruz@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 13:08:27 by fda-cruz          #+#    #+#             */
-/*   Updated: 2025/12/17 22:59:00 by fabio            ###   ########.fr       */
+/*   Updated: 2025/12/18 11:10:45 by fda-cruz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,14 @@ void	rrr(t_stack *a, t_stack *b);
 int		is_valid_number(char *str, int *index);
 int		is_valid_argument(char *str);
 int		count_numbers(int argc, char *argv[]);
-int		*parse_input(int argc, char *argv[]);
+int		parse_input(int argc, char *argv[], int **array);
 void	skip_spaces(char *str, int *index);
 long	ft_atol(char *str, int *index);
 int		is_number_in_integer_range(char *str, int *array, int *i_array);
 int		are_numbers_in_integer_range(int *array, int argc, char *argv[]);
 int		are_numbers_repeated(int *array, int length);
+t_stack	*init_stack(int *array, int length);
+int	is_sorted(int *array, int length);
+void	free_all(t_stack *a, t_stack *b, int *array);
 
 #endif

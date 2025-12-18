@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap_utils2.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fda-cruz <fda-cruz@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/18 10:36:12 by fda-cruz          #+#    #+#             */
+/*   Updated: 2025/12/18 10:36:43 by fda-cruz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/push_swap.h"
 
 void	skip_spaces(char *str, int *index)
 {
 	while (str[*index] && ((str[*index] >= 9 && str[*index] <= 13)
 			|| str[*index] == ' '))
-				(*index)++;
+		(*index)++;
 }
 
 long	ft_atol(char *str, int *index)
@@ -38,7 +50,7 @@ int	is_number_in_integer_range(char *str, int *array, int *i_array)
 	{
 		skip_spaces(str, &index);
 		if (str[index] == '\0')
-			break;
+			break ;
 		temp = ft_atol(str, &index);
 		if (temp < INT_MIN || temp > INT_MAX)
 			return (0);
