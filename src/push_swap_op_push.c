@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_op_push.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fda-cruz <fda-cruz@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 13:12:36 by fda-cruz          #+#    #+#             */
-/*   Updated: 2025/12/15 15:33:11 by fda-cruz         ###   ########.fr       */
+/*   Updated: 2025/12/21 01:25:00 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
-void	push(t_stack *src, t_stack *dst)
+void	push(t_stack *dst, t_stack *src)
 {
 	unsigned int	index;
 
@@ -37,9 +37,11 @@ void	push(t_stack *src, t_stack *dst)
 void	pa(t_stack *a, t_stack *b)
 {
 	push(a, b);
+	write(1, "pa\n", 3);
 }
 
 void	pb(t_stack *b, t_stack *a)
 {
 	push(b, a);
+	write(1, "pb\n", 3);
 }

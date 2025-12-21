@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_op_reverse_rotate.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fda-cruz <fda-cruz@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 13:16:34 by fda-cruz          #+#    #+#             */
-/*   Updated: 2025/12/15 15:46:06 by fda-cruz         ###   ########.fr       */
+/*   Updated: 2025/12/19 18:31:46 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 void	reverse_rotate(t_stack *stack)
 {
@@ -30,15 +30,18 @@ void	reverse_rotate(t_stack *stack)
 void	rra(t_stack *a)
 {
 	reverse_rotate(a);
+	write(1, "rra\n", 4);
 }
 
 void	rrb(t_stack *b)
 {
 	reverse_rotate(b);
+	write(1, "rrb\n", 4);
 }
 
 void	rrr(t_stack *a, t_stack *b)
 {
-	rra(a);
-	rrb(b);
+	reverse_rotate(a);
+	reverse_rotate(b);
+	write(1, "rrr\n", 4);
 }

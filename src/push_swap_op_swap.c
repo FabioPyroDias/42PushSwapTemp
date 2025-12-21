@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_op_swap.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fda-cruz <fda-cruz@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 13:11:35 by fda-cruz          #+#    #+#             */
-/*   Updated: 2025/12/15 15:33:48 by fda-cruz         ###   ########.fr       */
+/*   Updated: 2025/12/19 18:31:42 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 void	swap(t_stack *stack)
 {
@@ -26,15 +26,18 @@ void	swap(t_stack *stack)
 void	sa(t_stack *a)
 {
 	swap(a);
+	write(1, "sa\n", 3);
 }
 
 void	sb(t_stack *b)
 {
 	swap(b);
+	write(1, "sb\n", 3);
 }
 
 void	ss(t_stack *a, t_stack *b)
 {
-	sa(a);
-	sb(b);
+	swap(a);
+	swap(b);
+	write(1, "ss\n", 3);
 }
