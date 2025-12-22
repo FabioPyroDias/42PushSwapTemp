@@ -39,3 +39,37 @@ void	sort_length_5(t_stack *a, t_stack *b)
 	pa(a, b);
 	pa(a, b);
 }
+
+void	turk_sort(t_stack *a, t_stack *b)
+{
+	int	index;
+	int	rotation;
+
+	while (a->size > 3)
+		pb(b, a);
+	sort_length_3(a);
+	while (b->size != 0)
+	{
+		index = 0;
+		rotation = 0;
+		while (index < b->size)
+		{
+
+		}
+		if (rotation > b->size / 2)
+			while (rotation != b->size)
+			{
+				rrb(b);
+				rotation++;
+			}
+		else
+		{
+			while (rotation > 0)
+			{
+				rb(b);
+				rotation--;
+			}
+		}
+		pa(a, b);
+	}
+}

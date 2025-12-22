@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils2.c                                 :+:      :+:    :+:   */
+/*   push_swap_parse2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fda-cruz <fda-cruz@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 10:36:12 by fda-cruz          #+#    #+#             */
-/*   Updated: 2025/12/18 10:36:43 by fda-cruz         ###   ########.fr       */
+/*   Updated: 2025/12/22 11:36:21 by fda-cruz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	are_numbers_in_integer_range(int *array, int argc, char *argv[])
 	while (i_arg < argc)
 	{
 		if (!is_number_in_integer_range(argv[i_arg], array, &i_array))
-			return (free(array), 0);
+			return (0);
 		i_arg++;
 	}
 	return (1);
@@ -88,7 +88,7 @@ int	are_numbers_repeated(int *array, int length)
 		while (i_c < length)
 		{
 			if (array[i] == array[i_c])
-				return (free(array), 0);
+				return (0);
 			i_c++;
 		}
 		i++;

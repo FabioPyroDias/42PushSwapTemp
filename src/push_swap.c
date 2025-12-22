@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: fda-cruz <fda-cruz@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 13:10:46 by fda-cruz          #+#    #+#             */
-/*   Updated: 2025/12/21 21:10:16 by fabio            ###   ########.fr       */
+/*   Updated: 2025/12/22 11:39:48 by fda-cruz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(int argc, char *argv[])
 	t_stack	*a;
 	t_stack	*b;
 
+	array = NULL;
 	length = parse_input(argc, argv, &array);
 	if (length == 0)
 		return (free_all(NULL, NULL, array), 0);
