@@ -1,24 +1,23 @@
 #include "../include/push_swap.h"
+#include <stdio.h>
 
 int	get_number_of_rotations_a(t_stack *a, int value)
 {
-	int	target;
 	unsigned int	rotations;
 	unsigned int	index;
 
 	index = 0;
-	rotations = get_min_value_index(a->array, a->size);
-	target = a->array[rotations];
-	while (index < a->size)
+	rotations = 0;
+	while (index < a->size - 1)
 	{
-		if (a->array[index] > value && a->array[index] < target)
-		{
-			rotations = index;
-			target = a->array[index];
-		}
+		if (a->array[index] < value && a->array[index + 1] > value)
+			return (printf("Found it: %d = %d\n", index + 1, a->array[index + 1]), index + 1);
 		index++;
 	}
-	return (rotations);
+	if (a->array[a->size - 1] < value && a->array[0] > value)
+		return (0);
+	rotations = get_max_value_index(a->array, a->size);
+	return (printf("Did not find it. Needs rotations: %d\n", rotations), rotations + 1);
 }
 
 void	get_number_of_rotations(t_stack *a, t_stack *b, unsigned int *a_i, unsigned int *b_i)
@@ -51,7 +50,7 @@ void	get_number_of_rotations(t_stack *a, t_stack *b, unsigned int *a_i, unsigned
 
 void	rotate_both_stacks(t_stack *a, t_stack *b, unsigned int *rot_a, unsigned int *rot_b)
 {
-	if (*rot_a <= a->size / 2 && *rot_b <= b->size / 2)
+	if (*rot_a < a->size / 2 && *rot_b < b->size / 2)
 	{
 		while (*rot_a > 0 && *rot_b > 0)
 		{
@@ -60,7 +59,7 @@ void	rotate_both_stacks(t_stack *a, t_stack *b, unsigned int *rot_a, unsigned in
 			(*rot_b)--;
 		}
 	}
-	else if(*rot_a > a->size / 2 && *rot_b > b->size / 2)
+	else if(*rot_a >= a->size / 2 && *rot_b >= b->size / 2)
 	{
 		while (*rot_a < a->size && *rot_b < b->size)
 		{

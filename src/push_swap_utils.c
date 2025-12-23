@@ -6,7 +6,7 @@
 /*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 10:46:01 by fda-cruz          #+#    #+#             */
-/*   Updated: 2025/12/21 20:15:43 by fabio            ###   ########.fr       */
+/*   Updated: 2025/12/23 22:27:29 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,20 @@ int	get_min_value_index(int	*array, int length)
 		index++;
 	}
 	return (min_value_index);
+}
+
+int	get_max_value_index(int *array, int	length)
+{
+	int	max_value_index;
+	int	index;
+
+	index = 0;
+	max_value_index = 0;
+	while (index < length)
+	{
+		if (array[max_value_index] < array[index])
+			max_value_index = index;
+		index++;
+	}
+	return (max_value_index);
 }

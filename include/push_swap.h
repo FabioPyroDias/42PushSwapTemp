@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fda-cruz <fda-cruz@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 13:08:27 by fda-cruz          #+#    #+#             */
-/*   Updated: 2025/12/23 11:41:20 by fda-cruz         ###   ########.fr       */
+/*   Updated: 2025/12/23 20:47:04 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ t_stack	*init_stack(int *array, int length);
 int		is_sorted(int *array, int length);
 void	free_all(t_stack *a, t_stack *b, int *array);
 int		get_min_value_index(int	*array, int length);
+int		get_max_value_index(int *array, int	length);
 
 void	sort_length_3(t_stack *a);
 void	sort_length_4_base(t_stack *a, t_stack *b);
