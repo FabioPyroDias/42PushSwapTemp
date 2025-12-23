@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fabio <fabio@student.42.fr>                +#+  +:+       +#+         #
+#    By: fda-cruz <fda-cruz@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/15 13:40:48 by fda-cruz          #+#    #+#              #
-#    Updated: 2025/12/21 21:10:17 by fabio            ###   ########.fr        #
+#    Updated: 2025/12/23 11:26:59 by fda-cruz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ FILES = push_swap.c push_swap_op_swap.c push_swap_op_push.c \
 		push_swap_op_rotate.c push_swap_op_reverse_rotate.c \
 		push_swap_parse1.c push_swap_parse2.c \
 		push_swap_sorting1.c push_swap_sorting2.c \
-		push_swap_utils.c
+		push_swap_turk_sort.c push_swap_utils.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(FILES))
 

@@ -6,7 +6,7 @@
 /*   By: fda-cruz <fda-cruz@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 13:10:46 by fda-cruz          #+#    #+#             */
-/*   Updated: 2025/12/22 11:39:48 by fda-cruz         ###   ########.fr       */
+/*   Updated: 2025/12/23 11:42:30 by fda-cruz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ int	main(int argc, char *argv[])
 	if (is_sorted(array, length))
 		return (free_all(a, b, array), write(1, "OK\n", 3), 0);
 	sort_stack(a, b, length);
-	/*unsigned int i = 0;
+	unsigned int i = 0;
 	while (i < a->size)
 	{
 		printf("%d ", a->array[i]);
 		i++;
 	}
-	printf("\n"); */
+	printf("\n");
 	if (!is_sorted(a->array, length))
 		return (free_all(a, b, array), write(1, "KO\n", 3), 0);
 	return (free_all(a, b, array), write(1, "OK\n", 3), 0);

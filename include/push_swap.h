@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: fda-cruz <fda-cruz@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 13:08:27 by fda-cruz          #+#    #+#             */
-/*   Updated: 2025/12/21 20:21:40 by fabio            ###   ########.fr       */
+/*   Updated: 2025/12/23 11:41:20 by fda-cruz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,11 @@ void	sort_stack(t_stack *a, t_stack *b, int length);
 
 void	push_min_value_to_b(t_stack *a, t_stack *b, int index);
 void	sort_length_5(t_stack *a, t_stack *b);
+
+int		get_number_of_rotations_a(t_stack *a, int value);
+void	get_number_of_rotations(t_stack *a, t_stack *b, unsigned int *a_i, unsigned int *b_i);
+void	rotate_both_stacks(t_stack *a, t_stack *b, unsigned int *rot_a, unsigned int *rot_b);
+void	rotate_stack(t_stack *stack, unsigned int rotations, char passed_stack);
+void	turk_sort(t_stack *a, t_stack *b);
 
 #endif

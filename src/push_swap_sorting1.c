@@ -60,6 +60,6 @@ void	sort_stack(t_stack *a, t_stack *b, int length)
 		sort_length_4(a, b);
 	else if (length == 5)
 		sort_length_5(a, b);
-	/* else
-		turk_sort(a, b); */
+	else
+		turk_sort(a, b);
 }
