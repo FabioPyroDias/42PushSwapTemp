@@ -21,5 +21,5 @@ int	main(int argc, char *argv[])
 		return (free_all(a, b, array), write(1, "KO\n", 3), 0);
 	if (!is_sorted(a->array, length))
 		return (free_all(a, b, array), write(1, "KO\n", 3), 0);
-	return (free_all(a, b, array), write(1, "OK\n", 3),  0);
+	return (free_all(a, b, array), write(1, "OK\n", 3), 0);
 }
