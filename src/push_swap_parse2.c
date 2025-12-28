@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_parse2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fda-cruz <fda-cruz@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 10:36:12 by fda-cruz          #+#    #+#             */
-/*   Updated: 2025/12/22 11:36:21 by fda-cruz         ###   ########.fr       */
+/*   Updated: 2025/12/26 15:39:16 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	is_number_in_integer_range(char *str, int *array, int *i_array)
 	return (1);
 }
 
-int	are_numbers_in_integer_range(int *array, int argc, char *argv[])
+int	are_nbrs_in_int_range(int *array, int argc, char *argv[])
 {
 	int		i_array;
 	int		i_arg;

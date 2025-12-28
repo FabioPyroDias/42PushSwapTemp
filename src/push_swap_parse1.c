@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils1.c                                 :+:      :+:    :+:   */
+/*   push_swap_parse1.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fda-cruz <fda-cruz@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 10:35:24 by fda-cruz          #+#    #+#             */
-/*   Updated: 2025/12/18 10:36:06 by fda-cruz         ###   ########.fr       */
+/*   Updated: 2025/12/28 17:32:33 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,16 +79,16 @@ int	parse_input(int argc, char *argv[], int **array)
 	int	length;
 
 	if (argc < 2)
-		return (write(2, "Error: Stack Empty\n", 19), 0);
+		return (0);
 	length = count_numbers(argc, argv);
 	if (length == 0)
-		return (write(2, "Error: Invalid Input\n", 21), 0);
+		return (0);
 	*array = malloc(sizeof(int) * length);
 	if (!*array)
-		return (write(2, "Error: Failed to Allocate Memory.\n", 34), 0);
-	if (!are_numbers_in_integer_range(*array, argc, argv))
-		return (write(2, "Error: Number not within Integer range\n", 39), 0);
+		return (0);
+	if (!are_nbrs_in_int_range(*array, argc, argv))
+		return (0);
 	if (!are_numbers_repeated(*array, length))
-		return (write(2, "Error: Duplicated Numbers\n", 26), 0);
+		return (0);
 	return (length);
 }

@@ -1,5 +1,4 @@
 #include "../include/push_swap.h"
-#include <stdio.h>
 
 int	get_number_of_rotations_a(t_stack *a, int value)
 {
@@ -11,16 +10,16 @@ int	get_number_of_rotations_a(t_stack *a, int value)
 	while (index < a->size - 1)
 	{
 		if (a->array[index] < value && a->array[index + 1] > value)
-			return (printf("Found it: %d = %d\n", index + 1, a->array[index + 1]), index + 1);
+			return (index + 1);
 		index++;
 	}
 	if (a->array[a->size - 1] < value && a->array[0] > value)
 		return (0);
 	rotations = get_max_value_index(a->array, a->size);
-	return (printf("Did not find it. Needs rotations: %d\n", rotations), rotations + 1);
+	return (rotations + 1);
 }
 
-void	get_number_of_rotations(t_stack *a, t_stack *b, unsigned int *a_i, unsigned int *b_i)
+void	get_nbr_rot(t_stack *a, t_stack *b, unsigned int *ai, unsigned int *bi)
 {
 	unsigned int	cost_b;
 	unsigned int	cost_a;
@@ -38,34 +37,35 @@ void	get_number_of_rotations(t_stack *a, t_stack *b, unsigned int *a_i, unsigned
 		cost_a = get_number_of_rotations_a(a, b->array[current_index]);
 		if (cost_a > a->size / 2)
 			cost_a = a->size - cost_a;
-		if (cost_total > cost_b + cost_a)
+		if (cost_total > cost_b + cost_a || (cost_total == cost_b + cost_a
+				&& b->array[current_index] > b->array[*bi]))
 		{
-			*b_i = current_index;
-			*a_i = get_number_of_rotations_a(a, b->array[current_index]);
+			*bi = current_index;
+			*ai = get_number_of_rotations_a(a, b->array[current_index]);
 			cost_total = cost_b + cost_a;
 		}
 		current_index++;
 	}
 }
 
-void	rotate_both_stacks(t_stack *a, t_stack *b, unsigned int *rot_a, unsigned int *rot_b)
+void	r_stacks(t_stack *a, t_stack *b, unsigned int *r_a, unsigned int *r_b)
 {
-	if (*rot_a < a->size / 2 && *rot_b < b->size / 2)
+	if (*r_a < a->size / 2 && *r_b < b->size / 2)
 	{
-		while (*rot_a > 0 && *rot_b > 0)
+		while (*r_a > 0 && *r_b > 0)
 		{
 			rr(a, b);
-			(*rot_a)--;
-			(*rot_b)--;
+			(*r_a)--;
+			(*r_b)--;
 		}
 	}
-	else if(*rot_a >= a->size / 2 && *rot_b >= b->size / 2)
+	else if (*r_a >= a->size / 2 && *r_b >= b->size / 2)
 	{
-		while (*rot_a < a->size && *rot_b < b->size)
+		while (*r_a < a->size && *r_b < b->size)
 		{
 			rrr(a, b);
-			(*rot_a)++;
-			(*rot_b)++;
+			(*r_a)++;
+			(*r_b)++;
 		}
 	}
 }
@@ -85,100 +85,22 @@ void	rotate_stack(t_stack *stack, unsigned int rotations, char passed_stack)
 	else
 	{
 		while (rotations++ != stack->size)
+		{
 			if (passed_stack == 'a')
 				rra(stack);
 			else
 				rrb(stack);
+		}
 	}
 }
-#include <stdio.h>
+
 void	turk_sort(t_stack *a, t_stack *b)
 {
-	unsigned int	rotation_a;
-	unsigned int	rotation_b;
 	unsigned int	min_value_index;
 
-	while (a->size > 3)
-		pb(b, a);
-	unsigned int i = 0;
-	printf("A: ");
-	while (i < a->size)
-	{
-		printf("%d ", a->array[i]);
-		i++;
-	}
-	printf("\n");
-	i = 0;
-	printf("B: ");
-	while (i < b->size)
-	{
-		printf("%d ", b->array[i]);
-		i++;
-	}
-	printf("\n");
+	push_chunks_to_b(a, b);
 	sort_length_3(a);
-	printf("Apos ordenar:\n");
-	printf("A: ");
-	i = 0;
-	while (i < a->size)
-	{
-		printf("%d ", a->array[i]);
-		i++;
-	}
-	printf("\n");
-	printf("\n");
-	while (b->size != 0)
-	{
-		get_number_of_rotations(a, b, &rotation_a, &rotation_b);
-		rotate_both_stacks(a, b, &rotation_a, &rotation_b);
-		printf("Sai do Rotate Both Stacks:\n");
-		printf("A: ");
-		i = 0;
-		while (i < a->size)
-		{
-			printf("%d ", a->array[i]);
-			i++;
-		}
-		printf("\n");
-		i = 0;
-		printf("B: ");
-		while (i < b->size)
-		{
-			printf("%d ", b->array[i]);
-			i++;
-		}
-		printf("\n");
-		rotate_stack(a, rotation_a, 'a');
-		printf("Sai do Rotate Stack A:\n");
-		printf("A: ");
-		i = 0;
-		while (i < a->size)
-		{
-		printf("%d ", a->array[i]);
-		i++;
-		}
-		printf("\n");
-		rotate_stack(b, rotation_b, 'b');
-		printf("Sai do Rotate Stack B:\n");
-		printf("B: ");
-		i = 0;
-		while (i < b->size)
-		{
-		printf("%d ", b->array[i]);
-		i++;
-		}
-		printf("\n");
-		pa(a, b);
-		printf("Resultado ate agora:\n");
-		printf("A: ");
-		i = 0;
-		while (i < a->size)
-		{
-		printf("%d ", a->array[i]);
-		i++;
-		}
-		printf("\n\n");
-	}
+	push_back_from_b(a, b);
 	min_value_index = get_min_value_index(a->array, a->size);
 	if (min_value_index <= a->size / 2)
 		while (min_value_index-- != 0)

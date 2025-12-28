@@ -6,7 +6,7 @@
 /*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 13:08:27 by fda-cruz          #+#    #+#             */
-/*   Updated: 2025/12/23 20:47:04 by fabio            ###   ########.fr       */
+/*   Updated: 2025/12/26 18:06:13 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ int		parse_input(int argc, char *argv[], int **array);
 void	skip_spaces(char *str, int *index);
 long	ft_atol(char *str, int *index);
 int		is_number_in_integer_range(char *str, int *array, int *i_array);
-int		are_numbers_in_integer_range(int *array, int argc, char *argv[]);
+int		are_nbrs_in_int_range(int *array, int argc, char *argv[]);
 int		are_numbers_repeated(int *array, int length);
 
 t_stack	*init_stack(int *array, int length);
 int		is_sorted(int *array, int length);
 void	free_all(t_stack *a, t_stack *b, int *array);
 int		get_min_value_index(int	*array, int length);
-int		get_max_value_index(int *array, int	length);
+int		get_max_value_index(int *array, int length);
 
 void	sort_length_3(t_stack *a);
 void	sort_length_4_base(t_stack *a, t_stack *b);
@@ -66,9 +66,21 @@ void	sort_stack(t_stack *a, t_stack *b, int length);
 void	push_min_value_to_b(t_stack *a, t_stack *b, int index);
 void	sort_length_5(t_stack *a, t_stack *b);
 
+void	sort_array(int	*array, unsigned int length);
+int		*create_sorted(int *array, unsigned int length);
+int		normalize_array(t_stack *stack);
+
+int		get_chunk_count(t_stack *stack);
+int		exists_in_chunk(t_stack *a, int min, int max);
+void	push_chunk(t_stack *a, t_stack *b, int min, int max);
+void	push_chunks_to_b(t_stack *a, t_stack *b);
+void	push_back_from_b(t_stack *a, t_stack *b);
+
+void	rot_chunk(t_stack *a, int *rotations);
+
 int		get_number_of_rotations_a(t_stack *a, int value);
-void	get_number_of_rotations(t_stack *a, t_stack *b, unsigned int *a_i, unsigned int *b_i);
-void	rotate_both_stacks(t_stack *a, t_stack *b, unsigned int *rot_a, unsigned int *rot_b);
+void	get_nbr_rot(t_stack *a, t_stack *b, unsigned int *ai, unsigned int *bi);
+void	r_stacks(t_stack *a, t_stack *b, unsigned int *r_a, unsigned int *r_b);
 void	rotate_stack(t_stack *stack, unsigned int rotations, char passed_stack);
 void	turk_sort(t_stack *a, t_stack *b);
 

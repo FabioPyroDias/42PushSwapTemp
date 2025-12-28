@@ -6,7 +6,7 @@
 /*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 10:46:01 by fda-cruz          #+#    #+#             */
-/*   Updated: 2025/12/23 22:27:29 by fabio            ###   ########.fr       */
+/*   Updated: 2025/12/26 16:02:03 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	is_sorted(int *array, int length)
 	while (index < length)
 	{
 		if (array[index - 1] > array[index])
-				return (0);
+			return (0);
 		index++;
 	}
 	return (1);
@@ -81,7 +81,7 @@ int	get_min_value_index(int	*array, int length)
 	return (min_value_index);
 }
 
-int	get_max_value_index(int *array, int	length)
+int	get_max_value_index(int *array, int length)
 {
 	int	max_value_index;
 	int	index;
